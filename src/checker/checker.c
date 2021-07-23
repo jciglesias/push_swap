@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 13:43:10 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/07/23 19:27:16 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/07/23 20:22:05 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ int	ft_commands(char *line, t_listi **a, t_listi **b)
 	return (0);
 }
 
-void	ft_checker(t_listi *a, char *line)
+void	ft_checker(t_listi **a, char *line)
 {
 	t_listi	*b;
 
 	b = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
-		if (!ft_commands(line, &a, &b))
+		if (!ft_commands(line, a, &b))
 		{
 			write(1, "Error\n", 6);
 			free(line);
@@ -78,7 +78,11 @@ void	ft_checker(t_listi *a, char *line)
 			free(line);
 		line = NULL;
 	}
-	ft_check_list(a, b);
+	get_next_line(-1, &line);
+	if (line)
+		free(line);
+	ft_check_list(*a, b);
+	free_listi(a);
 }
 
 int	main(int argv, char **argc)
@@ -105,7 +109,8 @@ int	main(int argv, char **argc)
 			ft_putstr_fd("Error\n", 2);
 			return (1);
 		}
-		ft_checker(a, NULL);
+		ft_checker(&a, NULL);
+		ft_freesplit(num);
 	}
 	return (0);
 }

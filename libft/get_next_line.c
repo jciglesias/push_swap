@@ -6,7 +6,7 @@
 /*   By: jiglesia <jiglesia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 22:50:42 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/06/04 22:50:43 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/07/23 20:19:04 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ static char	*fill_pitcher(const int fd, char *pitcher)
 	int		last;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, guacal, 0))
+	{
+		if (pitcher)
+			free(pitcher);
 		return (0);
+	}
 	if (pitcher == NULL)
 		pitcher = ft_strdup("");
 	while (!(ft_strchr(pitcher, '\n')))

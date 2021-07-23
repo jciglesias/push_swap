@@ -6,7 +6,7 @@
 #    By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/09 12:55:34 by jiglesia          #+#    #+#              #
-#    Updated: 2021/07/23 19:52:25 by jiglesia         ###   ########.fr        #
+#    Updated: 2021/07/23 20:02:11 by jiglesia         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -40,7 +40,7 @@ SRC			=	push_swap.c
 CHECKER		=	checker.c
 MOVES		=	ft_rrr.c ft_sab.c
 INPUT		=	valid_input.c
-LIST		=	fill_list.c
+LIST		=	fill_list.c free_listi.c
 EVENTS		=
 LOADING		=
 
