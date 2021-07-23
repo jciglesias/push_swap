@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_rrr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 21:08:05 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/05/19 14:32:19 by jiglesia         ###   ########.fr       */
+/*   Created: 2021/05/07 20:26:54 by jiglesia          #+#    #+#             */
+/*   Updated: 2021/07/21 18:35:57 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_rrab(t_listi **a)
 {
-	int			i;
-	char		a;
+	t_listi	*tmp;
 
-	i = 0;
-	a = (char)c;
-	while (s[i])
-	{
-		if (s[i++] == a)
-			return ((char *)s + --i);
-	}
-	if (a == '\0')
-		return ((char *)s + i);
-	return (NULL);
+	if (!*a)
+		return (1);
+	tmp = *a;
+	while ((*a)->next)
+		*a = (*a)->next;
+	(*a)->next = tmp;
+	while (tmp->next != *a)
+		tmp = tmp->next;
+	tmp->next = NULL;
+	return (1);
+}
+
+int	ft_rrr(t_listi **a, t_listi **b)
+{
+	ft_rrab(a);
+	ft_rrab(b);
+	return (1);
 }

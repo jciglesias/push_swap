@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puterror.c                                      :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiglesia <jiglesia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 22:50:05 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/06/04 22:50:05 by jiglesia         ###   ########.fr       */
+/*   Created: 2021/05/18 21:42:21 by jiglesia          #+#    #+#             */
+/*   Updated: 2021/05/19 12:26:58 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_puterror(char *str, void *a)
+void	*ft_memalloc(size_t size)
 {
-	int	i;
+	void	*tmp;
 
-	i = ft_strlen(str);
-	write(2, str, i);
-	return (a);
+	tmp = malloc(sizeof(tmp) * (size));
+	if (!tmp)
+		return (NULL);
+	ft_memset(tmp, 0, size);
+	return (tmp);
 }

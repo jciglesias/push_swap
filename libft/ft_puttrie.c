@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_puttrie.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 21:08:05 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/05/19 14:32:19 by jiglesia         ###   ########.fr       */
+/*   Created: 2021/05/20 16:31:24 by jiglesia          #+#    #+#             */
+/*   Updated: 2021/05/20 18:22:42 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_puttrie(t_trie *root, char *str, int lvl)
 {
-	int			i;
-	char		a;
+	int		i;
 
-	i = 0;
-	a = (char)c;
-	while (s[i])
+	if (root->end)
 	{
-		if (s[i++] == a)
-			return ((char *)s + --i);
+		str[lvl] = 0;
+		ft_putstr(str);
+		ft_putstr("=");
+		ft_putstr(root->value);
+		ft_putchar('\n');
+		return ;
 	}
-	if (a == '\0')
-		return ((char *)s + i);
-	return (NULL);
+	i = 0;
+	while (i < 127)
+	{
+		if (root->children && root->map[i])
+		{
+			str[lvl] = (char)i;
+			str[lvl + 1] = 0;
+			ft_puttrie(root->map[i], str, lvl + 1);
+		}
+		i++;
+	}
 }

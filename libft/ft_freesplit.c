@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rrr.c                                           :+:      :+:    :+:   */
+/*   ft_freesplit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 20:26:54 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/05/07 22:03:03 by jiglesia         ###   ########.fr       */
+/*   Created: 2021/05/19 19:50:17 by jiglesia          #+#    #+#             */
+/*   Updated: 2021/05/25 00:45:23 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_rrab(t_listi *a)
+void	ft_freesplit(char **split)
 {
-	t_listi *tmp;
+	int	i;
 
-	tmp = a;
-	while (a->next)
-		a = a->next;
-	a->next = tmp;
-	while (tmp->next != a)
-		tmp = tmp->next;
-	tmp->next = NULL;
-	return (1);
-}
-
-int	ft_rrr(t_listi *a, t_listi *b)
-{
-	ft_rrab(a);
-	ft_rrab(b);
-	return (1);
+	i = 0;
+	if (split && *split)
+	{
+		while (split[i])
+			i++;
+		while (i--)
+			free(split[i]);
+	}
+	free(split);
+	split = NULL;
 }

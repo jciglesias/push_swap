@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puterror.c                                      :+:      :+:    :+:   */
+/*   valid_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiglesia <jiglesia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 22:50:05 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/06/04 22:50:05 by jiglesia         ###   ########.fr       */
+/*   Created: 2021/07/22 18:36:23 by jiglesia          #+#    #+#             */
+/*   Updated: 2021/07/22 18:37:17 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_puterror(char *str, void *a)
+int	valid_input(int i, char **num)
 {
-	int	i;
+	int	j;
 
-	i = ft_strlen(str);
-	write(2, str, i);
-	return (a);
+	while (i--)
+	{
+		j = -1;
+		while (num[i][++j])
+			if ((num[i][j] < '0' || num[i][j] > '9') && num[i][j] != '-')
+				return (0);
+	}
+	return (1);
 }

@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puterror.c                                      :+:      :+:    :+:   */
+/*   fill_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiglesia <jiglesia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 22:50:05 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/06/04 22:50:05 by jiglesia         ###   ########.fr       */
+/*   Created: 2021/07/22 18:38:16 by jiglesia          #+#    #+#             */
+/*   Updated: 2021/07/22 18:38:42 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_puterror(char *str, void *a)
+int	ft_fillist(t_listi **l, char **num, int size)
 {
-	int	i;
+	t_listi	*tmp;
+	size_t	i;
 
-	i = ft_strlen(str);
-	write(2, str, i);
-	return (a);
+	i = 1;
+	tmp = NULL;
+	if (!size)
+		return (0);
+	while (size--)
+	{
+		tmp = ft_newlisti(ft_atoi(num[size]), i++);
+		tmp->next = *l;
+		*l = tmp;
+	}
+	return (1);
 }

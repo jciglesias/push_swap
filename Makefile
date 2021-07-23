@@ -6,11 +6,12 @@
 #    By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/09 12:55:34 by jiglesia          #+#    #+#              #
-#    Updated: 2021/05/07 20:38:06 by jiglesia         ###   ########.fr        #
+#    Updated: 2021/07/23 19:52:25 by jiglesia         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME		=	push_swap
+CHNAME		=	checker
 
 #****************** INC *******************#
 # General
@@ -19,43 +20,43 @@ INC			=	./include/
 # Libft
 SUB_MAKE	=	./libft/
 INCFT		=	./libft/
-# Lib mlx
-DIRMLX		=	./minilibx-linux/
-INCMLX		=	./minilibx-linux/
 
+INCLUDE		=	-I $(INCFT) -I $(INC)
 
-INCLUDE		=	-I $(INCMLX) -O3 -I $(INCFT) -I $(INC)
-
-INC_LIB		=	-L$(INCFT) -lft -L$(DIRMLX) -lmlx -lXext -lX11 -lm -lbsd
+INC_LIB		=	$(INCFT)/libft.a
 
 
 #***************** SRC* *******************#
 
 DIRSRC		=	./src/
-DIRCOMP		=	$(DIRSRC)/check/
-DIRINTF		=	$(DIRSRC)/rendering/
-DIRUTILS	=	$(DIRSRC)/utils/
-DIRLOAD		=	$(DIRSRC)/loading/
-DIREVENT	=	$(DIRSRC)/events/
-DIRLASER	=	$(DIRSRC)/lasers/
+DIRCHEC		=	$(DIRSRC)/checker/
+DIRMV		=	$(DIRSRC)/moves/
+DIRINPUT	=	$(DIRSRC)/input/
+DIRLIST		=	$(DIRSRC)/list/
+DIREVENT	=	$(DIRSRC)
+DIRLASER	=	$(DIRSRC)
 
-SRC			=	minirt.c ft_save_bmp.c ft_free_scene.c
-CHECKING	=	check_elements.c check_figures.c ft_check_entry.c suport_check.c
-LASERS		=	ft_mallotrix.c ft_camera_to_world.c ft_colorfigure.c ft_intersect_cy.c ft_back_trace.c ft_sphere_normal.c ft_obs.c ft_obstructions.c ft_pl_obst.c
-RENDERING	=	ft_start_render.c ft_load_scene.c ft_color_figures.c ft_render_bmp.c ft_sq_to_pl.c
-UTILS		=	ft_strerror.c ft_normal.c ft_maxx.c ft_angle.c ft_copy.c ft_t0t1.c ft_adjust_color.c
-EVENTS		=	key_win.c ft_rotate.c ft_resize.c
-LOADING		=	fill_support.c  ft_fill_elements.c  ft_fill_figures.c  ft_fill_scene.c  ft_init_elements2.c  ft_init_elements.c  ft_init_scene.c
+SRC			=	push_swap.c
+CHECKER		=	checker.c
+MOVES		=	ft_rrr.c ft_sab.c
+INPUT		=	valid_input.c
+LIST		=	fill_list.c
+EVENTS		=
+LOADING		=
 
-SRCS		=	$(SRC) $(CHECKING) $(RENDERING) $(LASERS) $(UTILS) $(EVENTS) $(LOADING)
+PSRC		=	$(SRC) $(MOVES) $(INPUT) $(LIST)
+CSRC		=	$(CHECKER) $(MOVES) $(INPUT) $(LIST)
 
 #***************** DEPS ******************#
 
 DIROBJ		=	./depo/
 
-OAUX		=	$(SRCS:%=$(DIROBJ)%)
+OAUX		=	$(PSRC:%=$(DIROBJ)%)
+CAUX		=	$(CSRC:%=$(DIROBJ)%)
 DEPS		=	$(OAUX:.c=.d)
 OBJS		=	$(OAUX:.c=.o)
+CDEPS		=	$(CAUX:.c=.d)
+COBJS		=	$(CAUX:.c=.o)
 
 ifdef FLAGS
 	ifeq ($(FLAGS), no)
@@ -68,7 +69,7 @@ else
 CFLAGS		=	-Wall -Wextra -Werror
 endif
 
-CC			=	/usr/bin/gcc
+CC			=	/usr/bin/clang
 RM			=	/bin/rm -f
 ECHO		=	/bin/echo -e
 
@@ -77,16 +78,16 @@ ECHO		=	/bin/echo -e
 %.o		:		../$(DIRSRC)/%.c
 				$(CC) $(CFLAGS) $(INCLUDE) -MMD -o $@ -c $<
 
-%.o		:		../$(DIRCOMP)/%.c
+%.o		:		../$(DIRCHEC)/%.c
 				$(CC) $(CFLAGS) $(INCLUDE) -MMD -o $@ -c $<
 
-%.o		:		../$(DIRINTF)/%.c
+%.o		:		../$(DIRMV)/%.c
 				$(CC) $(CFLAGS) $(INCLUDE) -MMD -o $@ -c $<
 
-%.o		:		../$(DIRUTILS)/%.c
+%.o		:		../$(DIRINPUT)/%.c
 				$(CC) $(CFLAGS) $(INCLUDE) -MMD -o $@ -c $<
 
-%.o		:		../$(DIRLOAD)/%.c
+%.o		:		../$(DIRLIST)/%.c
 				$(CC) $(CFLAGS) $(INCLUDE) -MMD -o $@ -c $<
 
 %.o		:		../$(DIREVENT)/%.c
@@ -97,13 +98,19 @@ ECHO		=	/bin/echo -e
 
 #************************ MAIN COMPILATION *************************
 
-$(NAME)	:		ftlib minilibx $(OBJS)
+$(NAME)	:		ftlib $(OBJS)
 				@$(CC)  $(INCLUDE) $(CFLAGS) -o $(NAME) $(OBJS) $(INC_LIB)
+				@$(ECHO) '> Compiled'
+
+checker	:		ftlib $(COBJS)
+				$(CC)  $(INCLUDE) $(CFLAGS) -o $(CHNAME) $(COBJS) $(INC_LIB)
 				@$(ECHO) '> Compiled'
 
 clean	:
 				@($(RM) $(OBJS))
+				@($(RM) $(COBJS))
 				@($(RM) $(DEPS))
+				@($(RM) $(CDEPS))
 				@(cd $(SUB_MAKE) && $(MAKE) clean)
 				@$(ECHO) '> Directory cleaned'
 
@@ -111,8 +118,8 @@ all		:		$(NAME)
 
 fclean	:		clean
 				@$(RM) $(NAME)
+				@$(RM) $(CHNAME)
 				@(cd $(SUB_MAKE) && $(MAKE) fclean)
-				@(cd $(DIRMLX) && $(MAKE) clean)
 				@$(ECHO) '> Remove executable'
 
 re		:		fclean all
@@ -121,7 +128,7 @@ ftlib	:
 				@(cd $(SUB_MAKE) && $(MAKE))
 
 minilibx:
-				@(cd $(DIRMLX) && $(MAKE))
+				@(cd $() && $(MAKE))
 
 apt		:
 				@(sudo apt-get install gcc make xorg libxext-dev libbsd-dev)

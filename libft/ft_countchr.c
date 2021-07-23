@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puterror.c                                      :+:      :+:    :+:   */
+/*   ft_countchr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiglesia <jiglesia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 22:50:05 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/06/04 22:50:05 by jiglesia         ###   ########.fr       */
+/*   Created: 2021/06/04 22:52:33 by jiglesia          #+#    #+#             */
+/*   Updated: 2021/06/04 22:52:33 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_puterror(char *str, void *a)
+int	ft_countchr(const char *s, int c)
 {
 	int	i;
+	int	q;
 
-	i = ft_strlen(str);
-	write(2, str, i);
-	return (a);
+	i = 0;
+	q = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			q++;
+		i++;
+	}
+	return (q);
 }
