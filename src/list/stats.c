@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 20:14:24 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 17:23:12 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 17:38:30 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,23 @@ int	ordered(t_listi *head, int ascendant)
 	if (head && head->next)
 	{
 		if (head->n < head->next->n || ascendant)
+		{
 			while (head->next)
 			{
 				if (head->n > head->next->n)
 					return (0);
 				head = head->next;
 			}
+		}
 		else if (head->n > head->next->n)
+		{
 			while (head->next)
 			{
 				if (head->n < head->next->n)
 					return (0);
 				head = head->next;
 			}
+		}
 		else
 			ordered(head->next, ascendant);
 	}
