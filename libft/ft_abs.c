@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rrr.c                                           :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 20:26:54 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/07/21 18:35:57 by jiglesia         ###   ########.fr       */
+/*   Created: 2021/11/20 22:04:15 by jiglesia          #+#    #+#             */
+/*   Updated: 2021/11/20 22:05:40 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_rrab(t_listi **a)
+int	ft_abs(int a)
 {
-	t_listi	*tmp;
-
-	if (!*a)
-		return (1);
-	tmp = *a;
-	while ((*a)->next)
-		*a = (*a)->next;
-	(*a)->next = tmp;
-	while (tmp->next != *a)
-		tmp = tmp->next;
-	tmp->next = NULL;
-	return (1);
-}
-
-int	ft_rrr(t_listi **a, t_listi **b)
-{
-	ft_rrab(a);
-	ft_rrab(b);
-	return (1);
+	if (a < 0)
+		a *= -1;
+	return (a);
 }

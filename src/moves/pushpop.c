@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_input.c                                      :+:      :+:    :+:   */
+/*   pushpop.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiglesia <jiglesia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/22 18:36:23 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/20 11:42:12 by jiglesia         ###   ########.fr       */
+/*   Created: 2021/11/20 21:06:20 by jiglesia          #+#    #+#             */
+/*   Updated: 2021/11/20 23:17:19 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	valid_input(int i, char **num)
+void	push(t_listi **head, int val)
 {
-	int	j;
+	t_listi *new;
 
-	while (i--)
-	{
-		j = -1;
-		while (num[i][++j])
-			if ((num[i][j] < '0' || num[i][j] > '9') && num[i][j] != '-')
-				return (0);
-	}
-	return (1);
+	new = ft_newlisti(val, pile_len(*head));
+	new->next = *head;
+	*head = new;
+}
+
+void	pop(t_listi **head)
+{
+	t_listi	*next_node;
+
+	if (*head == NULL)
+		return ;
+	next_node = (*head)->next;
+	free(*head);
+	*head = next_node;
 }

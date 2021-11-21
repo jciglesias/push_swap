@@ -6,7 +6,7 @@
 #    By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/09 12:55:34 by jiglesia          #+#    #+#              #
-#    Updated: 2021/07/23 20:02:11 by jiglesia         ###   ########.fr        #
+#    Updated: 2021/11/20 22:29:50 by jiglesia         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -33,18 +33,18 @@ DIRCHEC		=	$(DIRSRC)/checker/
 DIRMV		=	$(DIRSRC)/moves/
 DIRINPUT	=	$(DIRSRC)/input/
 DIRLIST		=	$(DIRSRC)/list/
-DIREVENT	=	$(DIRSRC)
+DIRQ_SORT	=	$(DIRSRC)/q_sort/
 DIRLASER	=	$(DIRSRC)
 
 SRC			=	push_swap.c
 CHECKER		=	checker.c
-MOVES		=	ft_rrr.c ft_sab.c
+MOVES		=	ft_sab.c pushpop.c
 INPUT		=	valid_input.c
-LIST		=	fill_list.c free_listi.c
-EVENTS		=
+LIST		=	fill_list.c free_listi.c stats.c sizes.c check_list.c
+Q_SORT		=	q_sort.c
 LOADING		=
 
-PSRC		=	$(SRC) $(MOVES) $(INPUT) $(LIST)
+PSRC		=	$(SRC) $(MOVES) $(INPUT) $(LIST) $(Q_SORT)
 CSRC		=	$(CHECKER) $(MOVES) $(INPUT) $(LIST)
 
 #***************** DEPS ******************#
@@ -90,7 +90,7 @@ ECHO		=	/bin/echo -e
 %.o		:		../$(DIRLIST)/%.c
 				$(CC) $(CFLAGS) $(INCLUDE) -MMD -o $@ -c $<
 
-%.o		:		../$(DIREVENT)/%.c
+%.o		:		../$(DIRQ_SORT)/%.c
 				$(CC) $(CFLAGS) $(INCLUDE) -MMD -o $@ -c $<
 
 %.o		:		../$(DIRLASER)/%.c

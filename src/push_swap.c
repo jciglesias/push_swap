@@ -6,38 +6,67 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 13:16:51 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/07/23 17:17:38 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 00:06:57 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_middle(t_listi *a)
+void q_sort(t_listi **a, t_listi **b, int isa, t_pivot v)
 {
-	long long		m;
-	unsigned int	i;
+	int pivot;
+	int tmp;
 
-	m = 0;
-	i = 0;
-	while (a)
+	if (ordered(*a, 1) && !(*b))
+		return ;
+	if (count_between((isa) ? *a : *b, v.min, v.max) > 2)
 	{
-		m += a->n;
-		a = a->next;
-		i++;
+		pivot = (isa) ? move_pivot(a, b, 1, v) : 0;
+		(isa == 2) ? quick_return(a, v) : 0;
+		pivot = (!isa) ? move_pivot(b, a, 0, v) : pivot;
+		tmp = v.max;
+		v.max = pivot;
+		q_sort(a, b, 0, v);
+		v.max = tmp;
+		v.min = pivot;
+		q_sort(a, b, 2, v);
 	}
-	return (m / i);
+	else
+	{
+		if (pile_len(*b) > 1 && ((*b)->n < (*b)->next->n))
+			ft_sab(b, "sb\n");
+		ft_pab(b, a, "pa\n");
+		if (*b)
+			ft_pab(b, a, "pa\n");
+	}
 }
 
-void	push_swap(t_listi *a, int size)
+void	push_swap(t_listi *a, t_listi *b)
 {
-	t_listi	*b;
-	int		m;
+	t_pivot	v;
 
-	if (size > 1)
+	v.min = pile_min(a);
+	v.max = pile_max(a);
+	if (ordered(a, 1))
 	{
-		b = NULL;
-		m = find_middle(a);
+		free_listi(&a);
+		free_listi(&b);
+		return ;
 	}
+	if (pile_len(a) > 5 || pile_len(a) < 3)
+	{
+		q_sort(&a, &b, 1, v);
+		while (a && a->n != v.min)
+		{
+			if (a->next && a->next->n != v.min && a->next->n < a->n)
+				ft_sab(&a, "sa\n");
+			ft_rab(&a, "ra\n");
+		}
+	}
+	else
+		mini_solve(&a, &b);
+	free_listi(&a);
+	free_listi(&b);
 }
 
 int	main(int argv, char **argc)
@@ -64,7 +93,22 @@ int	main(int argv, char **argc)
 			ft_putstr_fd("Error\n", 2);
 			return (1);
 		}
-		push_swap(a, i);
+		push_swap(a, NULL);
+		return (0);
 	}
-	return (0);
+	else if (argv > 2)
+	{
+		a = NULL;
+		i = 1;
+		while (argc[i])
+			i++;
+		if (!valid_input(i - 1, &argc[1]) || !ft_fillist(&a, &argc[1], i - 1))
+		{
+			ft_putstr_fd("Error\n", 2);
+			return (1);
+		}
+		push_swap(a, NULL);
+		return (0);
+	}
+	return (1);
 }
