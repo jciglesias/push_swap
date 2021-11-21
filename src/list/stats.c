@@ -6,13 +6,13 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 20:14:24 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 00:07:16 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 15:21:43 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ordered(t_listi *head, int ascendant)
+int	ordered(t_listi *head, int ascendant)
 {
 	if (head && head->next)
 	{
@@ -36,9 +36,9 @@ int		ordered(t_listi *head, int ascendant)
 	return (1);
 }
 
-int		count_between(t_listi *p, int min, int max)
+int	count_between(t_listi *p, int min, int max)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (p)
@@ -50,7 +50,7 @@ int		count_between(t_listi *p, int min, int max)
 	return (count);
 }
 
-int		median_between(t_listi *p, int min, int max)
+int	median_between(t_listi *p, int min, int max)
 {
 	t_listi	*copy;
 	int		size;
@@ -72,7 +72,7 @@ int		median_between(t_listi *p, int min, int max)
 	return (x);
 }
 
-int		find_median(t_listi *head, int k)
+int	find_median(t_listi *head, int k)
 {
 	t_listi	*l;
 	t_listi	*r;

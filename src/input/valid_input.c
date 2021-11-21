@@ -6,7 +6,7 @@
 /*   By: jiglesia <jiglesia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 18:36:23 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 14:48:55 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 15:26:13 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static int	cmp_nmb(char *n, char *tmp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (n[i])
 	{
 		if ((n[i] - tmp[i]) > 0)
-				return (0);
+			return (0);
 		else if ((n[i] - tmp[i]) < 0)
-				return (1);
+			return (1);
 		i++;
 	}
 	return (1);
@@ -47,10 +47,10 @@ static int	check_intlim(char *n)
 	return (1);
 }
 
-static int check_doubles(char **num)
+static	int	check_doubles(char **num)
 {
-	int 		i;
-	int 		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (num[i + 1])

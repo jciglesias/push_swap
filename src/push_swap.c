@@ -6,31 +6,24 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 13:16:51 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 11:45:42 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 16:10:43 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void q_sort(t_listi **a, t_listi **b, int isa, t_pivot v)
+void	q_sort(t_listi **a, t_listi **b, int isa, t_pivot v)
 {
-	int pivot;
-	int tmp;
+	int	tmp;
 
 	if (ordered(*a, 1) && !(*b))
 		return ;
-	if (count_between((isa) ? *a : *b, v.min, v.max) > 2)
-	{
-		pivot = (isa) ? move_pivot(a, b, 1, v) : 0;
-		(isa == 2) ? quick_return(a, v) : 0;
-		pivot = (!isa) ? move_pivot(b, a, 0, v) : pivot;
-		tmp = v.max;
-		v.max = pivot;
-		q_sort(a, b, 0, v);
-		v.max = tmp;
-		v.min = pivot;
-		q_sort(a, b, 2, v);
-	}
+	if (isa)
+		tmp = count_between(*a, v.min, v.max);
+	else
+		tmp = count_between(*b, v.min, v.max);
+	if (tmp > 2)
+		ft_sort(a, b, isa, v);
 	else
 	{
 		if (pile_len(*b) > 1 && ((*b)->n < (*b)->next->n))

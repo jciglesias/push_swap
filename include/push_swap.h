@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 20:38:22 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 12:44:48 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 16:09:42 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct		s_pivot
 	int				min;
 	int				max;
 }					t_pivot;
+
+void	q_sort(t_listi **a, t_listi **b, int isa, t_pivot v);
 
 /*
 ** moves
@@ -67,5 +69,6 @@ void	quick_return(t_listi **p, t_pivot v);
 void	pass_limits(t_listi **a, t_listi **b, int i);
 void	insert_listi(t_listi **a, t_listi **b);
 void	mini_solve(t_listi **pa, t_listi **pb);
+void	ft_sort(t_listi **a, t_listi **b, int isa, t_pivot v);
 
 #endif

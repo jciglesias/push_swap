@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 22:28:44 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/20 22:31:42 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 15:23:18 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	free_pile(t_listi **p)
 		pop(p);
 }
 
-int		are_left(t_listi *p, int pivot, int ispa, t_pivot v)
+int	are_left(t_listi *p, int pivot, int ispa, t_pivot v)
 {
-	int much;
+	int	much;
 
 	much = 0;
 	while (p)
@@ -48,7 +48,7 @@ int		are_left(t_listi *p, int pivot, int ispa, t_pivot v)
 	return (much);
 }
 
-int		last_between(t_listi *p, int min, int max)
+int	last_between(t_listi *p, int min, int max)
 {
 	while (p->next)
 		p = p->next;

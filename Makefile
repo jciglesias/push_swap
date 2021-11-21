@@ -6,7 +6,7 @@
 #    By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/09 12:55:34 by jiglesia          #+#    #+#              #
-#    Updated: 2021/11/20 22:29:50 by jiglesia         ###   ########.fr        #
+#    Updated: 2021/11/21 16:10:06 by jiglesia         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,7 +41,7 @@ CHECKER		=	checker.c
 MOVES		=	ft_sab.c pushpop.c
 INPUT		=	valid_input.c
 LIST		=	fill_list.c free_listi.c stats.c sizes.c check_list.c
-Q_SORT		=	q_sort.c
+Q_SORT		=	q_sort.c ft_sort.c
 LOADING		=
 
 PSRC		=	$(SRC) $(MOVES) $(INPUT) $(LIST) $(Q_SORT)

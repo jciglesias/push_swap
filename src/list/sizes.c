@@ -6,15 +6,15 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 20:38:31 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 11:16:56 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 15:22:35 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		pile_len(t_listi *head)
+int	pile_len(t_listi *head)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (head)
@@ -25,9 +25,9 @@ int		pile_len(t_listi *head)
 	return (i);
 }
 
-int		pile_min(t_listi *p)
+int	pile_min(t_listi *p)
 {
-	int min;
+	int	min;
 
 	min = p->n;
 	while (p)
@@ -39,9 +39,9 @@ int		pile_min(t_listi *p)
 	return (min);
 }
 
-int		pile_max(t_listi *p)
+int	pile_max(t_listi *p)
 {
-	int max;
+	int	max;
 
 	max = p->n;
 	while (p)
@@ -53,11 +53,11 @@ int		pile_max(t_listi *p)
 	return (max);
 }
 
-int		closest_num(t_listi *p, int num)
+int	closest_num(t_listi *p, int num)
 {
-	int pos;
-	int cont;
-	int dif;
+	int	pos;
+	int	cont;
+	int	dif;
 
 	pos = 0;
 	cont = 0;
@@ -76,10 +76,10 @@ int		closest_num(t_listi *p, int num)
 	return (pos);
 }
 
-int		islarger(char *nb)
+int	islarger(char *nb)
 {
-	int i;
-	int pos;
+	int	i;
+	int	pos;
 
 	if (ft_strcmp(nb, "-") == 0)
 		return (0);

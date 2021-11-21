@@ -6,7 +6,7 @@
 /*   By: jiglesia <jiglesia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 19:58:15 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/07/23 20:01:24 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 15:19:24 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_listi(t_listi **a)
 {
-	t_listi *tmp;
+	t_listi	*tmp;
 
 	while (*a)
 	{

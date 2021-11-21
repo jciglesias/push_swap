@@ -6,7 +6,7 @@
 /*   By: jiglesia <jiglesia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:59:26 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 11:16:41 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 17:05:20 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ void	quick_return(t_listi **p, t_pivot v)
 		ft_rrab(p, "rra\n");
 }
 
+void	move_down(int minpos, t_listi **a)
+{
+	while (minpos != 0)
+	{
+		if (minpos < 0)
+			ft_rrab(a, "rra\n");
+		else
+			ft_rab(a, "ra\n");
+		if (minpos < 0)
+			++minpos;
+		else
+			--minpos;
+	}
+}
+
 void	pass_limits(t_listi **a, t_listi **b, int i)
 {
 	int		minpos;
@@ -60,16 +75,16 @@ void	pass_limits(t_listi **a, t_listi **b, int i)
 		p = p->next;
 	}
 	i = pile_len(*a);
-	maxpos = (ft_abs(maxpos - i) < maxpos) ? -ft_abs(maxpos - i) : maxpos;
-	minpos = (ft_abs(minpos - i) < minpos) ? -ft_abs(minpos - i) : minpos;
-	minpos = (ft_abs(minpos) > ft_abs(maxpos)) ? maxpos : minpos;
-	while (minpos != 0)
-	{
-		(minpos < 0) ? ft_rrab(a, "rra\n") : ft_rab(a, "ra\n");
-		minpos += (minpos < 0) ? 1 : -1;
-	}
+	if (ft_abs(maxpos - i) < maxpos)
+		maxpos = -ft_abs(maxpos - i);
+	if (ft_abs(minpos - i) < minpos)
+		minpos = -ft_abs(minpos - i);
+	if (ft_abs(minpos) > ft_abs(maxpos))
+		minpos = maxpos;
+	move_down(minpos, a);
 	ft_pab(b, a, "pb\n");
-	(pile_len(*a) == 4) ? pass_limits(a, b, 0) : 0;
+	if (pile_len(*a) == 4)
+		pass_limits(a, b, 0);
 }
 
 void	insert_listi(t_listi **a, t_listi **b)
@@ -84,31 +99,4 @@ void	insert_listi(t_listi **a, t_listi **b)
 		if (*b)
 			insert_listi(a, b);
 	}
-}
-
-void	mini_solve(t_listi **pa, t_listi **pb)
-{
-	int a;
-	int b;
-
-	if (pile_len(*pa) <= 3)
-	{
-		a = (*pa)->n;
-		b = (*pa)->next->n;
-		if (a > b || (a == pile_min(*pa) && b == pile_max(*pa)))
-		{
-			if (a == pile_max(*pa) && b == pile_min(*pa))
-				ft_rab(pa, "ra\n");
-			else
-				ft_sab(pa, "sa\n");
-		}
-		else
-			ft_rrab(pa, "rra\n");
-		if (!ordered(*pa, 1))
-			mini_solve(pa, pb);
-		return ;
-	}
-	pass_limits(pa, pb, 0);
-	mini_solve(pa, pb);
-	insert_listi(pa, pb);
 }
