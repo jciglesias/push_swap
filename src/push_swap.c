@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 13:16:51 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 00:06:57 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 10:52:52 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void q_sort(t_listi **a, t_listi **b, int isa, t_pivot v)
 	{
 		if (pile_len(*b) > 1 && ((*b)->n < (*b)->next->n))
 			ft_sab(b, "sb\n");
-		ft_pab(b, a, "pa\n");
+		ft_pab(a, b, "pa\n");
 		if (*b)
-			ft_pab(b, a, "pa\n");
+			ft_pab(a, b, "pa\n");
 	}
 }
 
