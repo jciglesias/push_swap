@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 20:38:22 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/20 22:30:53 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 12:44:48 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include "libft.h"
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 typedef struct		s_pivot
 {
