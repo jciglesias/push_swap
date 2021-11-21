@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 13:43:10 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 15:17:20 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 17:45:48 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,21 @@ void	ft_check_list(t_listi *a, t_listi *b)
 int	ft_commands(char *line, t_listi **a, t_listi **b)
 {
 	if (!ft_strncmp(line, "sa", 2))
-		return (ft_sab(a));
+		return (ft_sab(a, NULL));
 	else if (!ft_strncmp(line, "sb", 2))
-		return (ft_sab(b));
-	else if (!ft_strncmp(line, "ss", 2))
-		return (ft_ss(a, b));
+		return (ft_sab(b, NULL));
 	else if (!ft_strncmp(line, "pa", 2))
-		return (ft_pab(a, b));
+		return (ft_pab(a, b, NULL));
 	else if (!ft_strncmp(line, "pb", 2))
-		return (ft_pab(b, a));
+		return (ft_pab(b, a, NULL));
 	else if (!ft_strncmp(line, "ra", 2))
-		return (ft_rab(a));
+		return (ft_rab(a, NULL));
 	else if (!ft_strncmp(line, "rb", 2))
-		return (ft_rab(b));
+		return (ft_rab(b, NULL));
 	else if (!ft_strncmp(line, "rra", 3))
-		return (ft_rrab(a));
+		return (ft_rrab(a, NULL));
 	else if (!ft_strncmp(line, "rrb", 3))
-		return (ft_rrab(b));
-	else if (!ft_strncmp(line, "rrr", 3))
-		return (ft_rrr(a, b));
-	else if (!ft_strncmp(line, "rr", 2))
-		return (ft_rr(a, b));
+		return (ft_rrab(b, NULL));
 	return (0);
 }
 
