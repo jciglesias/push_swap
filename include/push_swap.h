@@ -6,19 +6,19 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 20:38:22 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 16:09:42 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 17:28:32 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		PUSH_SWAP_H
-# define	PUSH_SWAP_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <unistd.h>
 # include "libft.h"
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
-typedef struct		s_pivot
+typedef struct s_pivot
 {
 	int				min;
 	int				max;
@@ -37,7 +37,7 @@ int		ft_rrab(t_listi **a, char *cout);
 void	pop(t_listi **head);
 void	push(t_listi **head, int val);
 
-int	valid_input(int i, char **num);
+int		valid_input(int i, char **num);
 
 /*
 ** list

@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 20:14:24 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 15:21:43 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 17:23:12 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	find_median(t_listi *head, int k)
 	t_listi	*l;
 	t_listi	*r;
 	int		median;
-	int		x;
 
 	l = NULL;
 	r = NULL;
@@ -87,16 +86,17 @@ int	find_median(t_listi *head, int k)
 	head = head->next;
 	while (head)
 	{
-		push((head->n < median) ? &l : &r, head->n);
+		if (head->n < median)
+			push(&l, head->n);
+		else
+			push(&r, head->n);
 		head = head->next;
 	}
-	if (pile_len(l) == k - 1)
-		x = median;
-	else if (pile_len(l) > k - 1)
-		x = find_median(l, k);
-	else
-		x = find_median(r, k - pile_len(l) - 1);
+	if (pile_len(l) > k - 1)
+		median = find_median(l, k);
+	else if (pile_len(l) != k - 1)
+		median = find_median(r, k - pile_len(l) - 1);
 	free_listi(&l);
 	free_listi(&r);
-	return (x);
+	return (median);
 }
