@@ -6,7 +6,7 @@
 /*   By: jiglesia <jiglesia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:59:26 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 10:51:51 by jiglesia         ###   ########.fr       */
+/*   Updated: 2021/11/21 11:16:41 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	pass_limits(t_listi **a, t_listi **b, int i)
 		(minpos < 0) ? ft_rrab(a, "rra\n") : ft_rab(a, "ra\n");
 		minpos += (minpos < 0) ? 1 : -1;
 	}
-	ft_pab(a, b, "pb\n");
+	ft_pab(b, a, "pb\n");
 	(pile_len(*a) == 4) ? pass_limits(a, b, 0) : 0;
 }
 
