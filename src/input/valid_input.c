@@ -59,7 +59,7 @@ static	int	check_doubles(char **num)
 			return (0);
 		j = i + 1;
 		while (num[j])
-			if (!ft_strcmp(num[i], num[j++]))
+		  if (ft_atoi(num[i]) == ft_atoi(num[j++]))
 				return (0);
 		i++;
 	}
@@ -75,9 +75,15 @@ int	valid_input(int i, char **num)
 	while (i--)
 	{
 		j = -1;
+		if (!ft_strcmp(num[i], ""))
+		  return (0);
 		while (num[i][++j])
+		{
 			if ((num[i][j] < '0' || num[i][j] > '9') && num[i][j] != '-')
 				return (0);
+			if (num[i][j] == '-' && (!num[i][j + 1] || num[i][j + 1] == '-'))
+				return (0);
+		}
 	}
 	if (!check_doubles(num))
 		return (0);
