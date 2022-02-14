@@ -102,7 +102,7 @@ $(NAME)	:		ftlib $(OBJS)
 				@$(CC)  $(INCLUDE) $(CFLAGS) -o $(NAME) $(OBJS) $(INC_LIB)
 				@$(ECHO) '> Compiled'
 
-checker	:		ftlib $(COBJS)
+bonus	:		ftlib $(COBJS)
 				$(CC)  $(INCLUDE) $(CFLAGS) -o $(CHNAME) $(COBJS) $(INC_LIB)
 				@$(ECHO) '> Compiled'
 
