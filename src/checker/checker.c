@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 13:43:10 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 17:45:48 by jiglesia         ###   ########.fr       */
+/*   Updated: 2022/02/15 18:47:51 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int	main(int argv, char **argc)
 	if (argv == 2)
 	{
 		num = ft_split(argc[1], ' ');
+		if (!ft_strcmp(argc[1], ""))
+			ft_putstr_fd("Error\n", 2);
 		if (parsing(num, &a, 0))
 		{
 			ft_freesplit(num);
@@ -119,33 +121,3 @@ int	main(int argv, char **argc)
 	}
 	return (1);
 }
-/*int	main(int argv, char **argc)
-{
-	char	**num;
-	int		i;
-	t_listi	*a;
-
-	if (argv == 2)
-	{
-		i = 0;
-		num = ft_split(argc[1], ' ');
-		a = NULL;
-		while (num[i])
-			i++;
-		if (!i)
-		{
-			ft_freesplit(num);
-			return (1);
-		}
-		if (!valid_input(i, num) || !ft_fillist(&a, num, i))
-		{
-			ft_freesplit(num);
-			ft_putstr_fd("Error\n", 2);
-			return (1);
-		}
-		ft_checker(&a, NULL);
-		ft_freesplit(num);
-	}
-	return (0);
-}
-*/

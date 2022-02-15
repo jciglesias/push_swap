@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 13:16:51 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 16:10:43 by jiglesia         ###   ########.fr       */
+/*   Updated: 2022/02/15 18:43:53 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,20 @@ int	main(int argv, char **argc)
 	if (argv == 2)
 	{
 		num = ft_split(argc[1], ' ');
+		if (!ft_strcmp(argc[1], ""))
+			ft_putstr_fd("Error\n", 2);
 		if (parsing(num, &a, 0))
 		{
 			ft_freesplit(num);
 			return (1);
 		}
 		push_swap(a, NULL);
-		return (0);
 	}
 	else if (argv > 2)
 	{
 		if (parsing(&argc[1], &a, 0))
 			return (1);
 		push_swap(a, NULL);
-		return (0);
 	}
-	return (1);
+	return (0);
 }

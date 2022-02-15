@@ -6,7 +6,7 @@
 /*   By: jiglesia <jiglesia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 18:36:23 by jiglesia          #+#    #+#             */
-/*   Updated: 2021/11/21 15:26:13 by jiglesia         ###   ########.fr       */
+/*   Updated: 2022/02/15 17:51:39 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static	int	check_doubles(char **num)
 			return (0);
 		j = i + 1;
 		while (num[j])
-		  if (ft_atoi(num[i]) == ft_atoi(num[j++]))
+			if (ft_atoi(num[i]) == ft_atoi(num[j++]))
 				return (0);
 		i++;
 	}
@@ -76,7 +76,7 @@ int	valid_input(int i, char **num)
 	{
 		j = -1;
 		if (!ft_strcmp(num[i], ""))
-		  return (0);
+			return (0);
 		while (num[i][++j])
 		{
 			if ((num[i][j] < '0' || num[i][j] > '9') && num[i][j] != '-')
